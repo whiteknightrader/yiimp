@@ -1143,7 +1143,7 @@ int yespower_free_local(yespower_local_t *local)
 	return 0;
 }
 
-void yespowerurx_hash(const char* input, char* output, uint32_t len)
+void yespower_hash(const char* input, char* output, uint32_t len)
 {
     yespower_params_t yespower_1_0_uraniumx = {
         .version = YESPOWER_1_0,
