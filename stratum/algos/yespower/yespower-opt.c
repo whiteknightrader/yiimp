@@ -1150,4 +1150,18 @@ int yespower_free_local(yespower_local_t *local)
 {
 	return free_region(local);
 }
+
+
 #endif
+void yespower_hash(const char* input, char* output, uint32_t len)
+{
+    yespower_params_t yespower_1_0_uraniumx = {
+        .version = YESPOWER_1_0,
+        .N = 2048,
+        .r = 32,
+        .pers = (const uint8_t *)"UraniumX",
+        .perslen = 8 
+    };
+    yespower_tls( input, 80, &yespower_1_0_uraniumx, output);
+}
+
