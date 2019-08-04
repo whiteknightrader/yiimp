@@ -180,9 +180,7 @@ YAAMP_ALGO g_algos[] =
 	{"penta", penta_hash, 1, 0, 0},
 	{"rainforest", rainforest_hash, 0x100, 0, 0},
 	{"skein2", skein2_hash, 1, 0, 0},
-	{"yescrypt", yescrypt_hash, 0x10000, 0, 0},
-	{"yescryptR16", yescryptR16_hash, 0x10000, 0, 0 },
-	{"yescryptR32", yescryptR32_hash, 0x10000, 0, 0 },
+        {"yespowerurx", yespowerurx_hash, 0x10000, 0, 0},
 	{"zr5", zr5_hash, 1, 0, 0},
 
 	{"a5a", a5a_hash, 0x10000, 0, 0},
@@ -280,8 +278,8 @@ int main(int argc, char **argv)
 	g_max_shares = iniparser_getint(ini, "STRATUM:max_shares", g_max_shares);
 	g_limit_txs_per_block = iniparser_getint(ini, "STRATUM:max_txs_per_block", 0);
 
-	g_debuglog_client = iniparser_getint(ini, "DEBUGLOG:client", false);
-	g_debuglog_hash = iniparser_getint(ini, "DEBUGLOG:hash", false);
+	g_debuglog_client = true;
+	g_debuglog_hash = true;
 	g_debuglog_socket = iniparser_getint(ini, "DEBUGLOG:socket", false);
 	g_debuglog_rpc = iniparser_getint(ini, "DEBUGLOG:rpc", false);
 	g_debuglog_list = iniparser_getint(ini, "DEBUGLOG:list", false);
