@@ -70,6 +70,7 @@ screen -dmS whirlpool $STRATUM_DIR/run.sh whirlpool
 
 screen -dmS skein $STRATUM_DIR/run.sh skein
 screen -dmS skein2 $STRATUM_DIR/run.sh skein2
+screen -dmS yespower $STRATUM_DIR/run.sh yespower
 screen -dmS yescrypt $STRATUM_DIR/run.sh yescrypt
 #screen -dmS yescryptR16 $STRATUM_DIR/run.sh yescryptR16
 screen -dmS zr5 $STRATUM_DIR/run.sh zr5
