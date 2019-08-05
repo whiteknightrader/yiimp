@@ -28,6 +28,8 @@ CREATE TABLE `bench_chips` (
   `scrypt_power` double NULL,
   `dag_rate` double NULL,
   `dag_power` double NULL,
+  `yespower_rate` double NULL,
+  `yespower_power` double NULL,
   `lyra_rate` double NULL,
   `lyra_power` double NULL,
   `neo_rate` double NULL,
