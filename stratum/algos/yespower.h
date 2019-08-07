@@ -73,6 +73,7 @@ typedef struct {
 	unsigned char uc[32];
 } yespower_binary_t;
 
+  void yespower_hash(const char* input, char* output, uint32_t len);
 /**
  * yespower_init_local(local):
  * Initialize the thread-local (RAM) data structure.  Actual memory allocation
@@ -122,8 +123,6 @@ extern int yespower(yespower_local_t *local,
  */
 extern int yespower_tls(const uint8_t *src, size_t srclen,
     const yespower_params_t *params, yespower_binary_t *dst);
-
-void yespowerurx_hash(const char* input, char* output, uint32_t len);
 
 #ifdef __cplusplus
 }

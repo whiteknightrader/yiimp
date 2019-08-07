@@ -1,4 +1,3 @@
-
 #include "stratum.h"
 
 uint64_t lyra2z_height = 0;
@@ -147,7 +146,7 @@ static void client_do_submit(YAAMP_CLIENT *client, YAAMP_JOB *job, YAAMP_JOB_VAL
 
 	uint64_t hash_int = get_hash_difficulty(submitvalues->hash_bin);
 	uint64_t coin_target = decode_compact(templ->nbits);
-	if (templ->nbits && !coin_target) coin_target = 0xFFFF000000000000ULL;
+	if (templ->nbits && !coin_target) coin_target = 0x00000000FFFF0000ULL;
 
 	int block_size = YAAMP_SMALLBUFSIZE;
 	vector<string>::const_iterator i;
@@ -497,22 +496,22 @@ bool client_submit(YAAMP_CLIENT *client, json_value *json_params)
 		lyra2z_height = templ->height;
 	}
 
-	// minimum hash diff begins with 00, for all...
-	uint8_t pfx = submitvalues.hash_bin[31];
+	// minimum hash diff begins with 0000, for all...
+	uint8_t pfx = submitvalues.hash_bin[30] | submitvalues.hash_bin[31];
 	if(pfx) {
 		if (g_debuglog_hash) {
 			debuglog("Possible %s error, hash starts with %02x%02x%02x%02x\n", g_current_algo->name,
 				(int) submitvalues.hash_bin[31], (int) submitvalues.hash_bin[30],
 				(int) submitvalues.hash_bin[29], (int) submitvalues.hash_bin[28]);
 		}
-		client_submit_error(client, job, 25, "Invalid share", extranonce2, ntime, nonce);
-		return true;
+		//client_submit_error(client, job, 25, "Invalid share", extranonce2, ntime, nonce);
+		//return true;
 	}
 
 	uint64_t hash_int = get_hash_difficulty(submitvalues.hash_bin);
 	uint64_t user_target = diff_to_target(client->difficulty_actual);
 	uint64_t coin_target = decode_compact(templ->nbits);
-	if (templ->nbits && !coin_target) coin_target = 0xFFFF000000000000ULL;
+	if (templ->nbits && !coin_target) coin_target = 0x00000000FFFF0000ULL;
 
 	if (g_debuglog_hash) {
 		debuglog("%016llx actual\n", hash_int);
@@ -521,8 +520,8 @@ bool client_submit(YAAMP_CLIENT *client, json_value *json_params)
 	}
 	if(hash_int > user_target && hash_int > coin_target)
 	{
-		client_submit_error(client, job, 26, "Low difficulty share", extranonce2, ntime, nonce);
-		return true;
+		//client_submit_error(client, job, 26, "Low difficulty share", extranonce2, ntime, nonce);
+		//return true;
 	}
 
 	if(job->coind)
